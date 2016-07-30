@@ -2,9 +2,13 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import LazyImage from './LazyImage';
 
+const classNames = {
+  loadingState: '.image--loading',
+  loadedState: '.image--loaded',
+}
+
 describe(
   'Lazy Image Component', () => {
-
     it(
       'Should import the component correctly', () => {
         expect(LazyImage).not.toBe(null);
@@ -24,11 +28,25 @@ describe(
     );
 
     it(
+      'Should be rendered with the class loading state', function () {
+        expect(shallow(<LazyImage />).is(classNames.loadingState)).toBeTruthy();
+      }
+    );
+
+    it(
       'Should change its state to loaded after image has fully loaded', function () {
         const component = shallow(<LazyImage />);
         component.find('img').simulate('load');
         expect(component.state('loaded')).toBeTruthy();
       }
     );
+
+    it(
+      'Should change its classname after the image has fully loaded', function () {
+        const component = shallow(<LazyImage />);
+        component.find('img').simulate('load');
+        expect(component.is(classNames.loadedState)).toBeTruthy();
+      }
+    )
   }
 );
