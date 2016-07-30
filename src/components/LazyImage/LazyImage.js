@@ -2,6 +2,10 @@ import React from 'react';
 import './LazyImage.scss';
 
 export default class LazyImage extends React.Component {
+  static propTypes = {
+    src: React.PropTypes.string,
+  }
+
   state = {
     loaded: false,
   }
@@ -15,7 +19,7 @@ export default class LazyImage extends React.Component {
       <img
         className={`image ${this.state.loaded ? 'image--loaded' : 'image--loading'}`}
         alt="flickr"
-        src="http://placehold.it/20"
+        src={this.props.src}
         onLoad={this.handleImageLoaded}
       />
     );

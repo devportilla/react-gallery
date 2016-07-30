@@ -11,6 +11,7 @@ var sassLoaders = [
 
 module.exports = {
   entry: [
+    'whatwg-fetch',
     'webpack-dev-server/client?http://localhost:5000',
     'webpack/hot/dev-server',
     './src/index'

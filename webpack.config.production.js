@@ -1,6 +1,6 @@
 /* eslint-disable no-var */
-var webpack = require('webpack');
-var path = require('path');
+var webpack           = require('webpack');
+var path              = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer      = require('autoprefixer');
 
@@ -11,7 +11,10 @@ var sassLoaders = [
 ];
 
 module.exports = {
-  entry: './src/index',
+  entry: [
+    'whatwg-fetch',
+    './src/index'
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -24,16 +27,20 @@ module.exports = {
   devtool: 'source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+    new webpack.DefinePlugin(
+      {
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    ),
+    new webpack.optimize.UglifyJsPlugin(
+      {
+        compress: {
+          warnings: false
+        }
       }
-    }),
+    ),
     new ExtractTextPlugin('[name].css')
   ],
   module: {
