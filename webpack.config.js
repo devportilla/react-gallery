@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 var webpack = require('webpack');
 var path = require('path');
 
@@ -30,5 +29,11 @@ module.exports = {
         include: path.join(__dirname, 'src')
       }
     ]
+  },
+  externals: {
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
   }
 };

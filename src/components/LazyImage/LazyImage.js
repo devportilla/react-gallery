@@ -1,11 +1,16 @@
 import React from 'react';
 
-const Menu = () => (
-  <ul className="mainMenu">
-    <li><a href="#">File</a></li>
-    <li><a href="#">Edit</a></li>
-    <li><a href="#">Help</a></li>
-  </ul>
-);
+export default class LazyImage extends React.Component {
+  state = { loaded: false}
 
-export default Menu;
+  handleImageLoaded = () => {
+    this.setState({ loaded: true });
+  }
+
+  render() {
+    return (
+      <img alt="flickr" src="http://www.placehold.it/50" onLoad={this.handleImageLoaded} />
+    );
+  }
+
+}
