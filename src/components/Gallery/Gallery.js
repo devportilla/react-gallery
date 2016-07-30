@@ -1,5 +1,5 @@
 import React from 'react';
-import LazyImage from 'components/LazyImage/LazyImage';
+import LazyImage from 'components/LazyImage';
 
 export default class Gallery extends React.Component {
   static propTypes = {

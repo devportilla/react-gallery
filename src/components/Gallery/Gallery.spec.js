@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Gallery from './Gallery';
-import LazyImage from 'components/LazyImage/LazyImage';
+import Gallery from 'components/Gallery';
+import LazyImage from 'components/LazyImage';
 
 const testImages = [
   "http://placehold.it/10",
