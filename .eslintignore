@@ -1,0 +1,6 @@
+dist/*
+node_modules/*
+**/node_modules/*
+src/components/**/*.spec.js
+*.config.js
+*.config.production.js
