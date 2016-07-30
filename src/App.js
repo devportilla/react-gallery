@@ -1,5 +1,5 @@
 import React from 'react';
-import LazyImage from './components/LazyImage/LazyImage';
+import LazyImage from 'components/LazyImage/LazyImage';
 
 const App = () => (
   <div className="mainApp">

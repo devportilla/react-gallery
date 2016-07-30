@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import LazyImage from './LazyImage';
+import LazyImage from 'components/LazyImage/LazyImage';
 
 const classNames = {
   loadingState: '.image--loading',
@@ -8,7 +8,7 @@ const classNames = {
 }
 
 describe(
-  'Lazy Image Component', () => {
+  'LazyImage Component', () => {
     it(
       'Should import the component correctly', () => {
         expect(LazyImage).not.toBe(null);
@@ -16,7 +16,7 @@ describe(
     );
 
     it(
-      'Should render an img tag', function () {
+      'Should render a img tag', function () {
         expect(shallow(<LazyImage />).find('img').length).toBe(1);
       }
     );
