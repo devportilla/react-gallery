@@ -7,8 +7,10 @@ import Gallery from './components/Gallery/Gallery';
 const imageFetcher = new ImageFetcher('0239e1b9142a1b6c77b098ecc4debd0d');
 const imageInfoFetcher = new ImageInfoFetcher('0239e1b9142a1b6c77b098ecc4debd0d');
 
-render(<Gallery
-  pageSize={10}
-  imageFetcher={imageFetcher}
-  imageInfoFetcher={imageInfoFetcher} />,
+render(
+  <Gallery
+    pageSize={10}
+    imageFetcher={imageFetcher}
+    imageInfoFetcher={imageInfoFetcher}
+  />,
   document.getElementById('root'));

@@ -78,7 +78,8 @@ export default class Gallery extends React.Component {
         <Modal
           opened={this.state.isModalOpened}
           content={this.state.imageInfo}
-          closeFunction={this.closeModal} />
+          closeFunction={this.closeModal}
+        />
       </div>
     );
   }
