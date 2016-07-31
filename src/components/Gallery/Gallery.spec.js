@@ -78,5 +78,24 @@ describe(
         expect(Gallery.prototype.fetchImages).toHaveBeenCalledWith(pageSize);
       }
     )
+
+    it(
+      'Should fetch image info after a new imageid is requested', function() {
+        const component = shallow(<Gallery />);
+        spyOn(Gallery.prototype, 'fetchImageInfo');
+        component.setState({ modalImageId: '123'});
+        expect(Gallery.prototype.fetchImageInfo).toHaveBeenCalled();
+      }
+    )
+
+    it(
+      'Should not fetch new image info after the same imageid is requested', function() {
+        const component = shallow(<Gallery />);
+        spyOn(Gallery.prototype, 'fetchImageInfo');
+        component.setState({ modalImageId: '123'});
+        component.setState({ modalImageId: '123'});
+        expect(Gallery.prototype.fetchImageInfo).toHaveBeenCalledTimes(1);
+      }
+    )
   }
 );

@@ -48,5 +48,14 @@ describe(
         expect(component.is(classNames.loadedState)).toBeTruthy();
       }
     )
+
+    it(
+      'Should call the modal opening function when clicked', function() {
+        const Parent = {openModal : function() {}};
+        spyOn(Parent, 'openModal');
+        const component = shallow(<LazyImage clickHandler={Parent.openModal} />);
+        component.find('img').simulate('click');
+        expect(Parent.openModal).toHaveBeenCalled();
+      })
   }
 );
