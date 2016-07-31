@@ -11,12 +11,7 @@ export default class Gallery extends React.Component {
 
   static defaultProps = {
     pageSize: 5,
-    finder: new ImageFetcher(),
-  }
-
-  constructor(props) {
-    super(props);
-    this.fetcher = this.props.fetcher;
+    fetcher: new ImageFetcher(),
   }
 
   state = {
@@ -28,16 +23,24 @@ export default class Gallery extends React.Component {
     this.fetchImages(this.props.pageSize);
   }
 
+  shouldComponentUpdate(_, nextState) {
+    return (nextState.currentPage !== this.state.currentPage) || !this.state.images.length;
+  }
+
+  componentDidUpdate() {
+    this.fetchImages(this.props.pageSize);
+  }
+
   fetchImages(pageSize) {
-    this.fetcher.fetch(this.state.currentPage, pageSize).then(
+    this.props.fetcher.fetch(this.state.currentPage, pageSize).then(
       responseJSon => this.setState(
         { images: responseJSon.photos.photo.map(item => item.url_sq) }
       )
     );
   }
 
-  handlePageChange = () => {
-    this.fetchImages(this.props.pageSize);
+  handlePageChange = (pageNumber) => {
+    this.setState({ currentPage: pageNumber });
   }
 
   render() {
@@ -47,7 +50,7 @@ export default class Gallery extends React.Component {
           (item, index) => (
             <LazyImage key={index} src={item} />)
         )}
-        <Pager handlePageChange={this.handlePageChange} />
+        <Pager currentPage={this.state.currentPage} handlePageChange={this.handlePageChange} />
       </div>
     );
   }

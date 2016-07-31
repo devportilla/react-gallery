@@ -18,7 +18,7 @@ describe(
 
     it(
       'Should render as many li tags as needed + 4 (first, prev, next, last)', function () {
-        expect(shallow(<Pager />).find('li').length).toBe(5);
+        expect(shallow(<Pager />).find('li').length).toBe(9);
       }
     )
 
@@ -27,7 +27,7 @@ describe(
         const Parent = {handlePageChange : function() {}};
         spyOn(Parent, 'handlePageChange');
         const component = shallow(<Pager handlePageChange={Parent.handlePageChange} />);
-        component.find('li').first().simulate('click');
+        component.find('li').at(1).simulate('click');
         expect(Parent.handlePageChange).toHaveBeenCalled();
       }
     )
