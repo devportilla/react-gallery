@@ -23,12 +23,10 @@ export default class Gallery extends React.Component {
     this.fetchImages(this.props.pageSize);
   }
 
-  shouldComponentUpdate(_, nextState) {
-    return (nextState.currentPage !== this.state.currentPage) || !this.state.images.length;
-  }
-
-  componentDidUpdate() {
-    this.fetchImages(this.props.pageSize);
+  componentWillUpdate(_, nextState) {
+    if(nextState.currentPage !== this.state.currentPage) {
+      this.fetchImages(this.props.pageSize);
+    }
   }
 
   fetchImages(pageSize) {

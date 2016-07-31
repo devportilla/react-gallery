@@ -47,22 +47,20 @@ describe(
     )
 
     it(
-      'Should update its status after page changing and images are set', function() {
+      'Should fetch images after page changing and images are set', function() {
         const component = shallow(<Gallery />);
         component.setState({ images: testImages });
-        spyOn(Gallery.prototype, 'componentDidUpdate');
         component.setState({ currentPage: component.state('currentPage') + 1});
-        expect(Gallery.prototype.componentDidUpdate).toHaveBeenCalled();
+        expect(Gallery.prototype.fetchImages).toHaveBeenCalled();
       }
     )
 
     it(
-      'Should not update its status when not changing page and images are set', function() {
+      'Should not fetch new images when not changing page and images are set', function() {
         const component = shallow(<Gallery />);
         component.setState({ images: testImages });
-        spyOn(Gallery.prototype, 'componentDidUpdate');
         component.setState({ currentPage: component.state('currentPage')});
-        expect(Gallery.prototype.componentDidUpdate.calls.any()).toBeFalsy();
+        expect(Gallery.prototype.fetchImages.calls.any()).toBeFalsy();
       }
     )
 
