@@ -21,7 +21,7 @@ const testImages = [
 
 describe(
   'Gallery Component', () => {
-    beforeEach(function() {
+    beforeEach(() => {
       //We spy on fetchImages in order to avoid the remote call
       spyOn(Gallery.prototype, 'fetchImages');
     });
@@ -33,13 +33,13 @@ describe(
     );
 
     it(
-      'Should render a div tag', function () {
+      'Should render a div tag', () => {
         expect(shallow(<Gallery />).find('div').length).toBe(1);
       }
     );
 
     it(
-      'Should render as many LazyImage components as needed', function () {
+      'Should render as many LazyImage components as needed', () => {
         const component = shallow(<Gallery />);
         component.setState({ images: testImages });
         expect(component.find(LazyImage).length).toBe(testImages.length);
@@ -47,14 +47,14 @@ describe(
     );
 
     it(
-      'Should call fetch when mounting', function() {
+      'Should call fetch when mounting', () => {
         mount(<Gallery />);
         expect(Gallery.prototype.fetchImages).toHaveBeenCalled()
       }
     )
 
     it(
-      'Should fetch images after page changing and images are set', function() {
+      'Should fetch images after page changing and images are set', () => {
         const component = shallow(<Gallery />);
         component.setState({ images: testImages });
         component.setState({ currentPage: component.state('currentPage') + 1});
@@ -63,7 +63,7 @@ describe(
     )
 
     it(
-      'Should not fetch new images when not changing page and images are set', function() {
+      'Should not fetch new images when not changing page and images are set', () => {
         const component = shallow(<Gallery />);
         component.setState({ images: testImages });
         component.setState({ currentPage: component.state('currentPage')});
@@ -72,7 +72,7 @@ describe(
     )
 
     it(
-      'Should call fetch with correct parameters when mounting', function() {
+      'Should call fetch with correct parameters when mounting', () => {
         const pageSize = 3;
         mount(<Gallery pageSize={pageSize} />);
         expect(Gallery.prototype.fetchImages).toHaveBeenCalledWith(pageSize);
@@ -80,7 +80,7 @@ describe(
     )
 
     it(
-      'Should fetch image info after a new imageid is requested', function() {
+      'Should fetch image info after a new imageid is requested', () => {
         const component = shallow(<Gallery />);
         spyOn(Gallery.prototype, 'fetchImageInfo');
         component.setState({ modalImageId: '123'});
@@ -89,7 +89,7 @@ describe(
     )
 
     it(
-      'Should not fetch new image info after the same imageid is requested', function() {
+      'Should not fetch new image info after the same imageid is requested', () => {
         const component = shallow(<Gallery />);
         spyOn(Gallery.prototype, 'fetchImageInfo');
         component.setState({ modalImageId: '123'});

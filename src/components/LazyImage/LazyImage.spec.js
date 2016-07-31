@@ -16,25 +16,25 @@ describe(
     );
 
     it(
-      'Should render a img tag', function () {
+      'Should render a img tag', () => {
         expect(shallow(<LazyImage />).find('img').length).toBe(1);
       }
     );
 
     it(
-      'Should be rendered with the loaded state to false', function () {
+      'Should be rendered with the loaded state to false', () => {
         expect(shallow(<LazyImage />).state('loaded')).toBeFalsy();
       }
     );
 
     it(
-      'Should be rendered with the class loading state', function () {
+      'Should be rendered with the class loading state', () => {
         expect(shallow(<LazyImage />).is(classNames.loadingState)).toBeTruthy();
       }
     );
 
     it(
-      'Should change its state to loaded after image has fully loaded', function () {
+      'Should change its state to loaded after image has fully loaded', () => {
         const component = shallow(<LazyImage />);
         component.find('img').simulate('load');
         expect(component.state('loaded')).toBeTruthy();
@@ -42,7 +42,7 @@ describe(
     );
 
     it(
-      'Should change its classname after the image has fully loaded', function () {
+      'Should change its classname after the image has fully loaded', () => {
         const component = shallow(<LazyImage />);
         component.find('img').simulate('load');
         expect(component.is(classNames.loadedState)).toBeTruthy();
@@ -50,8 +50,8 @@ describe(
     )
 
     it(
-      'Should call the modal opening function when clicked', function() {
-        const Parent = {openModal : function() {}};
+      'Should call the modal opening function when clicked', () => {
+        const Parent = {openModal : () => {}};
         spyOn(Parent, 'openModal');
         const component = shallow(<LazyImage clickHandler={Parent.openModal} />);
         component.find('img').simulate('click');
