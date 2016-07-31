@@ -2,6 +2,7 @@ import React from 'react';
 import LazyImage from 'components/LazyImage';
 import Pager from 'components/Pager';
 import ImageFetcher from 'services/ImageFetcher';
+import Image from 'models/Image';
 
 export default class Gallery extends React.Component {
   static propTypes = {
@@ -23,16 +24,17 @@ export default class Gallery extends React.Component {
     this.fetchImages(this.props.pageSize);
   }
 
-  componentWillUpdate(_, nextState) {
-    if(nextState.currentPage !== this.state.currentPage) {
+  componentDidUpdate(_, nextState) {
+    if (nextState.currentPage !== this.state.currentPage) {
       this.fetchImages(this.props.pageSize);
     }
   }
 
   fetchImages(pageSize) {
+    console.log(this.state.currentPage);
     this.props.fetcher.fetch(this.state.currentPage, pageSize).then(
       responseJSon => this.setState(
-        { images: responseJSon.photos.photo.map(item => item.url_sq) }
+        { images: responseJSon.photos.photo.map(item => Image.fromValues(item)) }
       )
     );
   }
@@ -46,7 +48,7 @@ export default class Gallery extends React.Component {
       <div>
         {this.state.images.map(
           (item, index) => (
-            <LazyImage key={index} src={item} />)
+            <LazyImage key={index} image={item} />)
         )}
         <Pager currentPage={this.state.currentPage} handlePageChange={this.handlePageChange} />
       </div>

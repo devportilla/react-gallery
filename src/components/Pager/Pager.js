@@ -15,11 +15,13 @@ export default class Pager extends React.Component {
 
   createPagination = () => {
     const cp = this.props.currentPage;
+    let pagesToShow = [];
     if (cp < 3) {
-      return [1, 2, 3, 4, 5];
+      pagesToShow = [1, 2, 3, 4, 5];
     } else {
-      return [cp - 2, cp - 1 , cp, cp + 1, cp + 2];
+      pagesToShow = [cp - 2, cp - 1, cp, cp + 1, cp + 2];
     }
+    return pagesToShow;
   }
 
   render() {

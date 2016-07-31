@@ -2,14 +2,21 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import Gallery from 'components/Gallery';
 import LazyImage from 'components/LazyImage';
+import Image from 'models/Image';
+
+const testValues  = {
+  ownerName: "test",
+  url: "test",
+  title: "test",
+}
 
 const testImages = [
-  "http://placehold.it/10",
-  "http://placehold.it/10",
-  "http://placehold.it/10",
-  "http://placehold.it/10",
-  "http://placehold.it/10",
-  "http://placehold.it/10",
+  Image.fromValues(testValues),
+  Image.fromValues(testValues),
+  Image.fromValues(testValues),
+  Image.fromValues(testValues),
+  Image.fromValues(testValues),
+  Image.fromValues(testValues),
 ];
 
 describe(
