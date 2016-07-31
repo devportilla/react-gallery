@@ -10,6 +10,12 @@ export default class LazyImage extends React.Component {
     loaded: false,
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.src !== nextProps.src) {
+      this.setState({ loaded: false });
+    }
+  }
+
   handleImageLoaded = () => {
     this.setState({ loaded: true });
   }

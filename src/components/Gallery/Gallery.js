@@ -1,19 +1,22 @@
 import React from 'react';
-import ImageFinder from 'services/ImageFinder';
 import LazyImage from 'components/LazyImage';
+import Pager from 'components/Pager';
+import ImageFetcher from 'services/ImageFetcher';
 
 export default class Gallery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.finder = new ImageFinder('0239e1b9142a1b6c77b098ecc4debd0d');
-  }
-
   static propTypes = {
     pageSize: React.PropTypes.number,
+    fetcher: React.PropTypes.instanceOf(ImageFetcher),
   }
 
   static defaultProps = {
     pageSize: 5,
+    finder: new ImageFetcher(),
+  }
+
+  constructor(props) {
+    super(props);
+    this.fetcher = this.props.fetcher;
   }
 
   state = {
@@ -26,11 +29,15 @@ export default class Gallery extends React.Component {
   }
 
   fetchImages(pageSize) {
-    this.finder.find(this.state.currentPage, pageSize).then(
+    this.fetcher.fetch(this.state.currentPage, pageSize).then(
       responseJSon => this.setState(
         { images: responseJSon.photos.photo.map(item => item.url_sq) }
       )
     );
+  }
+
+  handlePageChange = () => {
+    this.fetchImages(this.props.pageSize);
   }
 
   render() {
@@ -40,6 +47,7 @@ export default class Gallery extends React.Component {
           (item, index) => (
             <LazyImage key={index} src={item} />)
         )}
+        <Pager handlePageChange={this.handlePageChange} />
       </div>
     );
   }

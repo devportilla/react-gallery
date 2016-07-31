@@ -46,10 +46,9 @@ describe(
       'Should call fetch with correct parameters when mounting', function() {
         const pageSize = 3;
         spyOn(Gallery.prototype, 'fetchImages');
-        mount(<Gallery pageSize={pageSize} />)
-        expect(Gallery.prototype.fetchImages).toHaveBeenCalledWith(pageSize)
+        mount(<Gallery pageSize={pageSize} />);
+        expect(Gallery.prototype.fetchImages).toHaveBeenCalledWith(pageSize);
       }
     )
-
   }
 );
