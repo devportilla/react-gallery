@@ -20,7 +20,7 @@ at the root of the project and enjoy.
 ``test_watch``launches a karma watcher to run the test on every file change
 
 
-# Todo
+# ToDo
 
 - More tests. Services and models are untested.
 - Error handling for the external services.
