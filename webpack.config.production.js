@@ -7,7 +7,8 @@ var autoprefixer      = require('autoprefixer');
 var sassLoaders = [
   'css-loader',
   'postcss-loader',
-  'sass-loader?indentedSyntax=false&includePaths[]=' + path.resolve(__dirname, './src')
+  'sass-loader?indentedSyntax=false',
+  'sass-resources',
 ];
 
 module.exports = {
@@ -54,6 +55,10 @@ module.exports = {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
         include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=dist/fonts/[name].[ext]'
       }
     ]
   },
@@ -64,4 +69,14 @@ module.exports = {
       }
     )
   ],
+  sassResources: [
+    path.resolve(__dirname, './resources/styles/mixins.scss'),
+  ],
+  sassLoader: {
+    includePaths: [
+      path.resolve(__dirname, './src'),
+      path.resolve(__dirname, './resources/styles'),
+      path.resolve(__dirname, './resources/fonts'),
+    ],
+  },
 };

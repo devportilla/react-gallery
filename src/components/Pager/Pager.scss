@@ -1,0 +1,41 @@
+$border-color: #e1e1e1;
+$text-color: #9b9b9b;
+$active-text-color: #fff;
+$active-bg-color: #50e3c2;
+$page-height: 32px;
+
+.pager {
+  &__page {
+    border: solid 2px $border-color;
+    border-radius: 10px;
+    color: $text-color;
+    cursor: pointer;
+    display: none;
+    float: left;
+    font-family: 'Roboto';
+    font-weight: 900;
+    height: $page-height;
+    line-height: $page-height;
+    list-style: none;
+    margin: 0 5px;
+    text-align: center;
+    width: 32px;
+
+    &:nth-child(-n+2),
+    &:nth-child(n+8){
+      display: block;
+    }
+
+    &:hover,
+    &--current {
+      background-color: $active-bg-color;
+      border-color: $active-bg-color;
+      color: $active-text-color;
+      display: block;
+    }
+
+    @include switch-on(tablet) {
+      display: block;
+    }
+  }
+}

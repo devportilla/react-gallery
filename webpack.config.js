@@ -1,12 +1,13 @@
-var webpack           = require('webpack');
-var path              = require('path');
+var webpack = require('webpack');
+var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer      = require('autoprefixer');
+var autoprefixer = require('autoprefixer');
 
 var sassLoaders = [
   'css-loader',
   'postcss-loader',
-  'sass-loader?indentedSyntax=false&includePaths[]=' + path.resolve(__dirname, './src')
+  'sass-loader?indentedSyntax=false',
+  'sass-resources',
 ];
 
 module.exports = {
@@ -41,9 +42,23 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
-        include: path.join(__dirname, 'src')
+        include: [path.join(__dirname, 'src'), path.join(__dirname, 'resources/styles')]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=dist/fonts/[name].[ext]'
       }
     ]
+  },
+  sassResources: [
+    path.resolve(__dirname, './resources/styles/mixins.scss'),
+  ],
+  sassLoader: {
+    includePaths: [
+      path.resolve(__dirname, './src'),
+      path.resolve(__dirname, './resources/styles'),
+      path.resolve(__dirname, './resources/fonts'),
+    ],
   },
   postcss: [
     autoprefixer(

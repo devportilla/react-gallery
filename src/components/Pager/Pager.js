@@ -1,4 +1,5 @@
 import React from 'react';
+import './Pager.scss';
 
 export default class Pager extends React.Component {
   static propTypes = {
@@ -27,19 +28,41 @@ export default class Pager extends React.Component {
   render() {
     return (
       <ul>
-        <li key="first" onClick={() => this.props.handlePageChange(1)}>
+        <li
+          className="pager__page"
+          key="first"
+          onClick={() => this.props.handlePageChange(1)}
+        >
           {'<<'}
         </li>
-        <li key="prev" onClick={() => this.props.handlePageChange(this.props.currentPage - 1)}>
+        <li
+          className="pager__page"
+          key="prev"
+          onClick={() => this.props.handlePageChange(this.props.currentPage - 1)}
+        >
           {'<'}
         </li>
         {this.createPagination().map(
-          (i) => <li key={i} onClick={() => this.props.handlePageChange(i)}>{i}</li>
+          (i) =>
+            <li
+              className={`pager__page ${this.props.currentPage === i ? 'pager__page--current' : ''}`}
+              key={i} onClick={() => this.props.handlePageChange(i)}
+            >
+              {i}
+            </li>
         )}
-        <li key="next" onClick={() => this.props.handlePageChange(this.props.currentPage + 1)}>
+        <li
+          className="pager__page"
+          key="next"
+          onClick={() => this.props.handlePageChange(this.props.currentPage + 1)}
+        >
           {'>'}
         </li>
-        <li key="last" onClick={() => this.props.handlePageChange(this.props.maxPages)}>
+        <li
+          className="pager__page"
+          key="last"
+          onClick={() => this.props.handlePageChange(this.props.maxPages)}
+        >
           {'>>'}
         </li>
       </ul>
