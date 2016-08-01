@@ -11,12 +11,12 @@ $border-color: #50e3c2;
   &--opened {
     display: inline-block;
     max-width: 600px;
-    left: 50%;
-    padding: 20px;
+    padding: 50px 20px 20px;
     position: fixed;
-    top: 50%;
-    transform: translate(-50%);
     z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   &__background {
@@ -34,6 +34,7 @@ $border-color: #50e3c2;
   }
 
   &__close-button {
+    cursor: pointer;
     position: absolute;
     top: 20px;
     right: 20px;

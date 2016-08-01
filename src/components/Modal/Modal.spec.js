@@ -11,8 +11,20 @@ describe(
     );
 
     it(
-      'Should render a div tag', () => {
-        expect(shallow(<Modal />).find('div').length).toBe(1);
+      'Should render a close button', () => {
+        expect(shallow(<Modal />).find('.modal__close-button').length).toBe(1);
+      }
+    );
+
+    it(
+      'Should render the background layer', () => {
+        expect(shallow(<Modal />).find('.modal__background').length).toBe(1);
+      }
+    );
+
+    it(
+      'Should render the modal layer', () => {
+        expect(shallow(<Modal />).find('.modal').length).toBe(1);
       }
     );
 

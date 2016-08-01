@@ -18,3 +18,10 @@ at the root of the project and enjoy.
 ``npm run lint``checks code style</br>
 ``npm build``builds the project with dist options</br>
 ``test_watch``launches a karma watcher to run the test on every file change
+
+
+# Todo
+
+- More tests. Services and models are untested.
+- Error handling for the external services.
+- Refactor the scss part.

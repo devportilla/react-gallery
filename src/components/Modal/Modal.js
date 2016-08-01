@@ -24,7 +24,9 @@ export default class Modal extends React.Component {
         ></div>
         <div className={`modal ${this.props.opened ? 'modal--opened' : 'modal--closed'}`}>
           <span className="modal__close-button" onClick={this.props.closeFunction}>x</span>
-          {this.props.content.postUrl}
+          Titulo : {this.props.content.title}<br />
+          Fecha : {this.props.content.dateTaken}<br />
+          <a href={this.props.content.externalUrl} target="_blank">External Link</a>
         </div>
       </div>
     );
