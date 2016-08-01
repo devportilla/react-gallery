@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 export default class ImageFetcher {
   extras = [
     'owner_name',
-    'url_sq',
+    'url_q',
   ];
 
   constructor(apiKey) {

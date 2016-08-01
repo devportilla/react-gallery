@@ -1,14 +1,17 @@
 import React from 'react';
 import './LazyImage.scss';
-import Image from 'models/Image';
 
 export default class LazyImage extends React.Component {
   static propTypes = {
-    image: React.PropTypes.instanceOf(Image),
+    id: React.PropTypes.string,
+    secret: React.PropTypes.string,
+    url: React.PropTypes.string,
     clickHandler: React.PropTypes.func,
   }
   static defaultProps = {
-    image: Image.default(),
+    id: null,
+    secret: null,
+    url: null,
     clickHandler: () => {},
   }
 
@@ -17,7 +20,7 @@ export default class LazyImage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.image.url !== nextProps.image.url) {
+    if (this.props.url !== nextProps.url) {
       this.setState({ loaded: false });
     }
   }
@@ -30,9 +33,9 @@ export default class LazyImage extends React.Component {
     return (
       <img
         className={`image ${this.state.loaded ? 'image--loaded' : 'image--loading'}`}
-        alt={this.props.image.id}
-        src={this.props.image.url}
-        onClick={() => this.props.clickHandler(this.props.image.id, this.props.image.secret)}
+        alt={this.props.id}
+        src={this.props.url}
+        onClick={() => this.props.clickHandler(this.props.id, this.props.secret)}
         onLoad={this.handleImageLoaded}
       />
     );

@@ -1,9 +1,13 @@
 .image {
+  border-radius: 100%;
+  box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.5);
+  display: block;
+  margin: auto;
   opacity: 0;
 
   &--loaded {
     opacity: 1;
-    transition: opacity 5s;
+    transition: opacity 2s;
   }
 }
 

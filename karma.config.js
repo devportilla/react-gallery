@@ -6,7 +6,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var sassLoaders = [
   'css-loader',
   'postcss-loader',
-  'sass-loader?indentedSyntax=false&includePaths[]=' + path.resolve(__dirname, './src')
+  'sass-loader?indentedSyntax=false',
+  'sass-resources',
 ];
 
 webpackConfig.module.loaders     = [
@@ -17,8 +18,12 @@ webpackConfig.module.loaders     = [
   {
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
-    include: path.join(__dirname, 'src')
-  }
+    include: [path.join(__dirname, 'src'), path.join(__dirname, 'resources/styles')]
+  },
+  {
+    test: /\.(eot|svg|ttf|woff|woff2)$/,
+    loader: 'file?name=dist/fonts/[name].[ext]'
+  },
 ];
 webpackConfig.module.postLoaders = [
   {

@@ -9,8 +9,8 @@ export default class Image {
   constructor(values) {
     this.id = values.id;
     this.secret = values.secret;
-    this.ownerName = values.ownerName;
-    this.url = values.url_sq;
+    this.ownerName = values.ownername;
+    this.url = values.url_q;
     this.title = values.title;
   }
   static fromValues(values) {

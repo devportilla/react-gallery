@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageInfo from 'models/ImageInfo';
+import './Modal.scss';
 
 export default class Modal extends React.Component {
   static propTypes = {
@@ -16,9 +17,15 @@ export default class Modal extends React.Component {
 
   render() {
     return (
-      <div className={`modal ${this.props.opened ? 'modal--opened' : 'modal--closed'}`}>
-        <span onClick={this.props.closeFunction}>x</span>
-        {this.props.content.postUrl}
+      <div>
+        <div
+          className={`modal__background ${this.props.opened ? 'modal__background--opened' :
+                                          'modal__background--closed'}`}
+        ></div>
+        <div className={`modal ${this.props.opened ? 'modal--opened' : 'modal--closed'}`}>
+          <span className="modal__close-button" onClick={this.props.closeFunction}>x</span>
+          {this.props.content.postUrl}
+        </div>
       </div>
     );
   }

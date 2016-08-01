@@ -1,5 +1,5 @@
 import React from 'react';
-import LazyImage from 'components/LazyImage';
+import ImageCard from 'components/ImageCard';
 import Pager from 'components/Pager';
 import Modal from 'components/Modal';
 import ImageFetcher from 'services/ImageFetcher';
@@ -72,7 +72,7 @@ export default class Gallery extends React.Component {
       <div>
         {this.state.images.map(
           (item, index) => (
-            <LazyImage key={index} image={item} clickHandler={this.openModal} />)
+            <ImageCard key={index} image={item} clickHandler={this.openModal} />)
         )}
         <Pager currentPage={this.state.currentPage} handlePageChange={this.handlePageChange} />
         <Modal

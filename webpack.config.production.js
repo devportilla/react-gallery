@@ -54,11 +54,11 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!')),
-        include: path.join(__dirname, 'src')
+        include: [path.join(__dirname, 'src'), path.join(__dirname, 'resources/styles')]
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
-        loader: 'file?name=dist/fonts/[name].[ext]'
+        loader: 'file?name=fonts/[name].[ext]'
       }
     ]
   },

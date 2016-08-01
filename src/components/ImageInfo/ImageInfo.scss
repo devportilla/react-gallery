@@ -1,0 +1,20 @@
+$background: rgba(80, 226, 193, 0.5);
+$text-color: #fff;
+
+.image-info {
+  background-color: $background;
+  border-radius: 0 0 150px 150px;
+  box-sizing: border-box;
+  color: $text-color;
+  font-family: 'Roboto';
+  padding: 0 10px;
+  position: absolute;
+  bottom: -100%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 150px;
+  height: 75px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: bottom 1s;
+}

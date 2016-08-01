@@ -1,0 +1,22 @@
+.image-card {
+  box-sizing: border-box;
+  padding: 5px;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 50%;
+
+  @include switch-on(tablet) {
+    width: 33.33%
+  }
+
+  @include switch-on(large) {
+    width: 25%;
+  }
+
+  &:hover {
+    .image-info {
+      bottom: 5px;
+    }
+  }
+}

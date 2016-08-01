@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import Gallery from 'components/Gallery';
-import LazyImage from 'components/LazyImage';
+import ImageCard from 'components/ImageCard';
 import Image from 'models/Image';
 
 const testValues  = {
@@ -39,10 +39,10 @@ describe(
     );
 
     it(
-      'Should render as many LazyImage components as needed', () => {
+      'Should render as many ImageCard components as needed', () => {
         const component = shallow(<Gallery />);
         component.setState({ images: testImages });
-        expect(component.find(LazyImage).length).toBe(testImages.length);
+        expect(component.find(ImageCard).length).toBe(testImages.length);
       }
     );
 
